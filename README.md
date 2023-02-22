@@ -1,7 +1,6 @@
 # pluscloud open: technical documentation repo
 
-[pluscloud open](https://www.plusserver.com/en/products/pluscloud-open) is an open-source cloud service by [plusserver](https://plusserver.com). The technical documentation is published [here](https://docs.pco.get-cloud.io).
-
+[plusserver Kubernetes Engine](https://www.plusserver.com/en/produkte/managed-kubernetes) is an enterprise-scale, open-source Kubernetes engine provided by [plusserver](https://plusserver.com). The technical documentation is published [here](https://docs.pske.get-cloud.io).
 
 ## Contributions
 
@@ -16,7 +15,7 @@ To contribute, follow these steps:
 2. Clone the forked repository to your local machine using the following command:
 
 ```bash
-git clone https://github.com/pluscloudopen/docs.git
+git clone https://github.com/pluscloudopen/pske-docs.git
 ```
 
 3. Create a new branch to work on your changes:
@@ -69,7 +68,7 @@ Ref: [Developing inside a Container](https://code.visualstudio.com/docs/devconta
 1. Clone the GitHub repo to your local machine by running the following command in your terminal:
 
 ```bash
-git clone https://github.com/pluscloudopen/docs.git
+git clone https://github.com/pluscloudopen/pske-docs.git
 ```
 
 2. Make sure you have Visual Studio Code (VSCode) installed on your machine. If you don't have it already, you can download it from the [official website](https://code.visualstudio.com/).

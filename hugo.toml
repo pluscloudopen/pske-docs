@@ -1,4 +1,4 @@
-baseURL = 'https://docs.pco.get-cloud.io/'
+baseURL = 'https://docs.pske.get-cloud.io/'
 languageCode = 'en-us'
 
 # Language settings
@@ -61,14 +61,14 @@ includeFields = ''
 # Language configuration
 [languages]
 [languages.en]
-title = "plusserver Kubernetes Engine"
+title = "plusserver Kubernetes Engine (PSKE)"
 description = "The technical documentation for pske"
 languageName = "English"
 # Weight used for sorting.
 weight = 1
 #[languages.de]
-#title = "pluscloud open: docs"
-#description = "Die technische Dokumentation für die pluscloud open"
+#title = "plusserver Kubernetes Engine (PSKE)"
+#description = "Die technische Dokumentation für die pske"
 #languageName ="Deutsch"
 #contentDir = "content/de"
 #time_format_default = "02.01.2006"
@@ -197,10 +197,10 @@ enable = true
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
 [[params.links.user]]
-name = "pluscloud open"
-url = "https://www.plusserver.com/en/products/pluscloud-open"
+name = "plusserver Kubernetes Engine"
+url = "https://www.plusserver.com/en/produkte/managed-kubernetes"
 icon = "fa-solid fa-house"
-desc = "pluscloud open product page"
+desc = "plusserver Kubernetes Engine product page"
 [[params.links.user]]
 name = "GitHub"
 url = "https://github.com/pluscloudopen"
