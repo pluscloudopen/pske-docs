@@ -1,6 +1,5 @@
 baseURL = 'https://docs.pco.get-cloud.io/'
 languageCode = 'en-us'
-#title = 'pluscloud open: docs'
 
 # Language settings
 contentDir = "content/en"
