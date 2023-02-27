@@ -85,10 +85,10 @@ style = "github"
 guessSyntax = "true"
 
 # Everything below this are Site Params
-
 # Comment out if you don't want the "print entire section" link enabled.
 [outputs]
-section = ["HTML", "print", "RSS"]
+section = ["HTML", "RSS"]
+#section = ["HTML", "print", "RSS"]
 
 # https://gohugo.io/about/hugo-and-gdpr/
 [privacy]
