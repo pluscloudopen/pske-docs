@@ -1,11 +1,11 @@
 ---
-title: "Einrichtung eines Vertical Pod Autoscalers (VPA)"
-linkTitle: "Einrichtung eines Vertical Pod Autoscalers (VPA)"
+title: "Einrichtung eines Horizontal Pod Autoscalers (HPA)"
+linkTitle: "Einrichtung eines Horizontal Pod Autoscalers (HPA)"
 weight: 20
 date: 2023-02-21
 ---
 
-m folgenden Beispiel wird eine Applikation deployed, welche aus einem freizugänglichen Image resultiert. Dieses Beispiel dient der Veranschaulichung, wie der VPA auf Zustandsveränderungen reagiert.
+Im folgenden Beispiel wird eine Applikation deployed, welche aus einem freizugänglichen Image resultiert. Dieses Beispiel dient der Veranschaulichung, wie der VPA auf Zustandsveränderungen reagiert.
 
 ## 1) Provisionieren eines Clusters
 Zuerst sollte ein Kubernetes Cluster provisioniert werden.
@@ -41,6 +41,7 @@ metrics-server-7b236j497-bnw9s              1/1     Running   0          67d
 vpa-admission-controller-3ns8d8777d-pps3w   1/1     Running   0          12s
 vpa-recommender-6fcsnm26j5-s7lw0            1/1     Running   0          23s
 vpa-updater-7sm51h55c-a9smw                 1/1     Running   0          23s
+...
 ```
 
 ## 3) Deployment der Applikation
@@ -143,36 +144,54 @@ $ kubectl apply -f vpa.yaml
 verticalpodautoscaler.autoscaling.k8s.io/my-deployment-vpa created
 ```
 
-3) Testing
+## 3) Testing
+
 Status vor dem Testing
 
-
+```bash
 $ kubectl -n default get pods
 NAME                                  READY   STATUS    RESTARTS   AGE
 vpa-demo-deployment-85bff8877-9z9p9   1/1     Running   0          20m
- 
+```
+
+```bash
 $ kubectl -n default get verticalpodautoscaler # Kann auch hpa abgekürzt werden
 NAME                  REFERENCE                        TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
 vpa-demo-deployment   Deployment/vpa-demo-deployment   0%/50%    1         10        1          20m
-Erzeugen von Last
+```
+
+### Erzeugen von Last
+
 Mit folgendem Befehl wird eine Last simuliert:
 
+```bash
 kubectl run -i --tty load-simulation --rm --image=busybox --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://vpa-demo-deployment; done"
-Verhalten während Last
+```
+
+### Verhalten während Last
+
 Das Verhalten während der Last ist individuell und abhängig von der Applikation.
 
-4) Entfernen von Last
+## 4) Entfernen von Last
+
 Durch den folgenden Befehl wird der Load-Simulator entfernt:
 
+```bash
 $ kubectl delete pod load-simulation
 pod "load-simulation" deleted
+```
+
+{{< alert title="Wichtig!">}}
 WICHTIG! Die Ramp-Down-Time liegt bei standardmäßig 5 Minuten. Das heißt, dass ein Absenken der Last erst nach 5 Minuten (+- 15 Sekunden) vom VPA mit einem absenken der Replikate quittiert wird.
+{{< /alert >}}
 
 Im Anschluss werden die Replikate entfernt, da keine Last mehr vorhanden ist.
 
-5) Cleanup
+## 5) Cleanup
+
 Im folgenden werden der Service, das Deployment und der VPA entfernt.
 
+```bash
 $ kubectl delete -f vpa.yaml
 horizontalpodautoscaler.autoscaling "vpa-demo-deployment" deleted
  
@@ -181,3 +200,4 @@ deployment.apps "vpa-demo-deployment" deleted
  
 $ kubectl delete -f service.yaml
 service "vpa-demo-deployment" deleted
+```

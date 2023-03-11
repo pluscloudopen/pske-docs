@@ -20,6 +20,8 @@ Ein Limit definiert die maximale Menge an Ressourcen, die ein bestimmter Contain
 
 ### Wie funktioniert der VPA ?
 
+![HPA](/images/content/03-kubernetes/autoscaling/vpa.png)
+
 Der VPA fragt in regelmäßigen Abständen bei der Kubernetes-API die Ressourcennutzung eines Pods ab und passt dann die Anzahl der Replikate nach Bedarf an, um ein Zielniveau für die Ressourcennutzung zu erreichen.
 
 Im Detail funktioniert dies wie folgt:
@@ -72,12 +74,12 @@ spec:
 ### Limitierungen des VPA
 Wie beim HPA ist der VPA zwar ein leistungsfähiges Tool, unterliegt aber ebenfalls einigen Einschränkungen und ist nicht für jeden Anwendungsfall ideal. Auch kann er nicht jedes Problem mit Cluster-Ressourcen lösen. Es gibt dabei einige Dinge zu beachten:
 
-**Der VPA ....**
+**Der VPA ...**
 
-**.... kann**, wenn man die Grenzen für die Metriken der Pods nicht effizient festlegt, Pods häufig beenden oder Ressourcen verschwenden <br>
-**.... kann** nicht zusammen mit dem VPA verwendet werden auf Basis der selben Metriken <br>
-**.... kann** nicht skalieren, wenn die Gesamtkapazität des Clusters erschöpft ist, bis neue Nodes zum Cluster hinzugefügt werden <br>
-**.... kann** mehr Ressourcen empfehlen, als im Cluster verfügbar sind, was dazu führt, dass der Pod (aufgrund unzureichender Ressourcen) keinem Knoten zugewiesen wird und daher nie läuft. Um diese Einschränkung zu umgehen, ist es eine gute Idee, den LimitRange auf die maximal verfügbaren Ressourcen zu setzen. Dadurch wird sichergestellt, dass die Pods nicht mehr Ressourcen anfordern, als der LimitRange definiert.
+**... kann**, wenn man die Grenzen für die Metriken der Pods nicht effizient festlegt, Pods häufig beenden oder Ressourcen verschwenden <br>
+**... kann** nicht zusammen mit dem VPA verwendet werden auf Basis der selben Metriken <br>
+**... kann** nicht skalieren, wenn die Gesamtkapazität des Clusters erschöpft ist, bis neue Nodes zum Cluster hinzugefügt werden <br>
+**... kann** mehr Ressourcen empfehlen, als im Cluster verfügbar sind, was dazu führt, dass der Pod (aufgrund unzureichender Ressourcen) keinem Knoten zugewiesen wird und daher nie läuft. Um diese Einschränkung zu umgehen, ist es eine gute Idee, den LimitRange auf die maximal verfügbaren Ressourcen zu setzen. Dadurch wird sichergestellt, dass die Pods nicht mehr Ressourcen anfordern, als der LimitRange definiert.
 
 Testing
 Es gibt mehrere Möglichkeiten, den Kubernetes Vertical Pod Autoscaler (VPA) zu testen.
@@ -96,10 +98,3 @@ Der HPA und VPA können miteinander in Konflikt geraten - wenn man beispielsweis
 
 In der Regel wird der VPA so eingestellt, dass die Skalierung auf der Basis von CPU oder RAM erfolgt, und benutzerdefinierte Metriken für HPA verwendet werden.
 
-
-
-Überwachung
-Sobald der VPA eingerichtet ist, kann dieser mittels der Kubernetes-API oder mit einem Monitoringtool wie Prometheus, Grafana oder Kubernetes Dashboard überwacht werden.
-
-Links und Quellen
-https://docs.aws.amazon.com/eks/latest/userguide/vertical-pod-autoscaler.html
