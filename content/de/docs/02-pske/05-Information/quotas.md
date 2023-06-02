@@ -7,7 +7,7 @@ date: 2023-02-21
 
 | Item                      |      Size |
 |---------------------------|----------:|
-| Cores                     | 128 Cores |
+| Cores                     | 256 Cores |
 | RAM                       |    512 GB |
 | Instances                 |       500 |
 | Floating IPs              |        10 |
