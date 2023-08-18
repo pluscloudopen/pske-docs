@@ -13,7 +13,7 @@ Bei "Infrastructure" (1) ist unsere pluscloud open bereits für Sie ausgewählt.
 
 ![2](/images/content/02-pske/10-clusterinteraction/cluster-provisioning/2.png)
 
-Optional "YAML" (3): Hier können die IP-Netze der Worker Nodes definiert werden, welche sich mit den IP-Netzen 10.20.0.0/16, 192.168.123.0/24 nicht überlappen dürfen. Diese Auswahl kann wichtig sein, insofern Sie später Ihr Kubernetes Cluster via HybridConnector mit einer Bestandsumgebung verbinden wollen.
+Optional "YAML" (3): Hier können die IP-Netze der Worker Nodes definiert werden, welche sich mit den IP-Netzen 10.20.0.0/16, 10.64.0.0/12, 10.80.0.0/12, 192.168.123.0/24 nicht überlappen dürfen. Diese Auswahl kann wichtig sein, insofern Sie später Ihr Kubernetes Cluster via HybridConnector mit einer Bestandsumgebung verbinden wollen.
 
 ```yaml
 spec:
