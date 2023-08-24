@@ -15,6 +15,7 @@ date: 2023-02-21
 | Router                    |       500 |
 | Subnets                   |       500 |
 | Max. Volumes              |      1000 |
+| Max. Volumes attached to node             |      128 |
 | Max. Volume-Size          |   4000 GB |
 | Max. Snapshots per Volume |        99 |
 | Max. Backups              |        99 |
