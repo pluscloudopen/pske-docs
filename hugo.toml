@@ -66,11 +66,11 @@ description = "The technical documentation for pske"
 languageName = "English"
 # Weight used for sorting.
 weight = 1
-[languages.de]
-title = "plusserver Kubernetes Engine (PSKE)"
-description = "Die technische Dokumentation für die pske"
-languageName ="Deutsch"
-contentDir = "content/de"
+#[languages.de]
+#title = "plusserver Kubernetes Engine (PSKE)"
+#description = "Die technische Dokumentation für die pske"
+#languageName ="Deutsch"
+#contentDir = "content/de"
 time_format_default = "02.01.2006"
 time_format_blog = "02.01.2006"
 
