@@ -9,7 +9,7 @@ date: 2023-10-20
 
 The Terraform Kubectl Provider enables the provisioning of Kubernetes clusters within the PSKE (Gardener) using, as already mentioned, Terraform.
 
-## Notwendige Komponenten und Zugänge
+## Components and accesses required
 
 The following is required:
 
