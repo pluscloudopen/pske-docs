@@ -5,74 +5,72 @@ weight: 20
 date: 2023-02-21
 ---
 
-Das Feature "Hibernation" bietet Ihnen die Möglichkeit automatisiert oder auf Knopfdruck einen oder mehrere PSKE-Cluster in den Modus "hibernated" zu versetzen, um somit Kosten der Cloud-Ressourcen, die nicht 24/7 benötigt werden, einzusparen.
+The "Hibernation" feature provides you with the option to automatically or with the push of a button, put one or more PSKE clusters into "hibernated" mode to save costs on cloud resources that are not needed 24/7.
 
-Bsp.: Test oder Development PSKE-Cluster, welche nur zur regulären Arbeitszeit betrieben werden.
+Example: Test or Development PSKE clusters that are only operated during regular working hours.
 
 ## Hibernation
 
-Durch Nutzung des Features "Hibernation" werden die folgenden PSKE-Cluster Komponenten heruntergefahren:
+By using the "Hibernation" feature, the following PSKE cluster components are shut down:
 
-Workload
-Worker Nodes des PSKE Clusters
-Control Plane (kube-apiserver, etcd, kube-scheduler, kube-controller-manager, cloud-controler-manager)
+- Workload
+- Worker Nodes of the PSKE Cluster
+- Control Plane (kube-apiserver, etcd, kube-scheduler, kube-controller-manager, cloud-controller-manager)
 
-Ausgenommen hiervon sind Floating IP-Adressen, Load Balancer und Persistent Volumes, welche weiter berechnet werden.
+Exceptions to this are Floating IP addresses, Load Balancers, and Persistent Volumes, which continue to incur charges.
 
-Da die Daten der Controlplane persistent vorgehalten werden und wir weiterhin Compute Ressourcen für den Cluster reservieren, wird die Clusterstunde weiterberechnet.
+Since the Control Plane data is persistently stored, and we continue to reserve compute resources for the cluster, the cluster hour is still billed.
 
 ## Wake-Up
 
-Beim "Aufwecken" wird das PSKE-Cluster mit seinen Komponenten inkl. Floating IP-Adressen, Load Balancer und Persistent Volumes
+When "waking up," the PSKE cluster and its components, including Floating IP addresses, Load Balancers, and Persistent Volumes, are restored to their previous state and can be used as usual.
 
-in seinen vorigen Ursprungszustand versetzt und kann somit wieder wie gewohnt genutzt werden.
+## Hibernation Configuration
 
-## Konfiguration von Hibernation
-### (1) Im PSKE-Dashboard
-### (1.1) Manuell via YAML Cluster Manifest
+### (1) In the PSKE Dashboard
 
-Wenn Sie Ihren PSKE-Cluster manuell über das YAML Cluster Manifest in den Modus "hibernated" versetzen wollen, können Sie dies unter dem Punkt "spec" konfigurieren.
+### (1.1) Manually via YAML Cluster Manifest
+
+If you want to manually put your PSKE cluster into "hibernated" mode using the YAML Cluster Manifest, you can configure it under the "spec" section.
 
 ```yaml
 spec:
-  hibernation:
-    enabled: true
-    schedules:
-      - start: "00 20 * * *"       # Start hibernation every day at 8PM
-        end: "0 6 * * *"           # Stop hibernation every day at 6AM
-      location: "Europe/Berlin"  # Specify a location for the cron to run in
+  hibernation:
+    enabled: true
+    schedules:
+      - start: "00 20 * * *"     # Start hibernation every day at 8 PM
+        end: "0 6 * * *"         # Stop hibernation every day at 6 AM
+        location: "Europe/Berlin"  # Specify a location for the cron to run in
 ```
 
-Der Start- und Endpunkt orientiert sich an der bekannten Cron Syntax aus der Crontab in der Unix/Linux Welt.
+The start and end points follow the familiar Cron syntax from the Crontab in the Unix/Linux world.
 
-### (1.2) Manuell via Knopfdruck
+### (1.2) Manually via Button Press
 
-Sollten Sie Ihren PSKE-Cluster in den Modus "hibernated" versetzen wollen, können Sie über Clusters (1) den entsprechenden PSKE-Cluster auswählen und über die drei Punkte (2) den Menüpunkt "Hibernate Cluster" (3) auswählen.
+If you want to put your PSKE cluster into "hibernated" mode manually, you can select the corresponding PSKE cluster under Clusters (1) and choose the "Hibernate Cluster" (3) option via the three dots (2).
 
 ![1](/images/content/02-pske/10-clusterinteraction/cluster-hibernation/1.png)
 
 ![2](/images/content/02-pske/10-clusterinteraction/cluster-hibernation/2.png)
 
-### (1.3) Automatisiert via Hibernation Schedule
+### (1.3) Automated via Hibernation Schedule
 
-Wenn Sie Ihren PSKE-Cluster automatisiert in den Modus "hibernated" versetzen wollen, können Sie dazu den Hibernation
+If you want to automate putting your PSKE cluster into "hibernated" mode, you can use the Hibernation Schedule and configure the start and end points as well as the day of the week separately for each PSKE cluster.
 
-Schedule verwenden und Start- und Endpunkt sowie Wochentag separat je PSKE-Cluster konfigurieren.
-
-#### Neues PSKE-Cluster
+#### New PSKE Cluster
 
 ![3](/images/content/02-pske/10-clusterinteraction/cluster-hibernation/3.png)
 
-Es können ein oder mehrere Hibernation Schedule Tasks konfiguriert werden. Erstellen Sie dazu unter (1) einen neuen PSKE-Cluster und scrollen Sie bis zum Ende der Seite. Die Wochentage, Start- und Endpunkt sowie auch ohne Startpunkt (Wake up at) können Sie über (2) konfigurieren. Sie können ebenfalls auch weitere Hibernation Schedule Tasks (3) erstellen und mit (4) die PSKE-Cluster Erstellung abschließen. 
+You can configure one or more Hibernation Schedule tasks. To do this, create a new PSKE cluster under (1) and scroll to the end of the page. Configure the days of the week, start and end points, and even without a start point (Wake up at) via (2). You can also create additional Hibernation Schedule tasks (3) and complete the PSKE cluster creation with (4).
 
-#### Bestehendes PSKE-Cluster
+#### Existing PSKE Cluster
 
-Wählen Sie dazu unter (1) das entsprechende PSKE-Cluster aus und klicken Sie auf den Namen (2) um zum Punkt Hibernation (3) zu kommen.
+Select the relevant PSKE cluster under (1) and click on the name (2) to access the Hibernation (3) section.
 
 ![4](/images/content/02-pske/10-clusterinteraction/cluster-hibernation/4.png)
 
 ![5](/images/content/02-pske/10-clusterinteraction/cluster-hibernation/5.png)
 
-Die Wochentage, Start- und Endpunkt sowie auch ohne Startpunkt (Wake up at) können Sie über (1) konfigurieren, Sie können aber auch weitere Hibernation Schedule Tasks (2) erstellen und mit (3) die Erstellung der Hibernation Schedule Tasks für das ausgewähle PSKE-Cluster speichern.
+You can configure the days of the week, start and end points, and even without a start point (Wake up at) via (1). You can also create additional Hibernation Schedule tasks (2) and save the creation of Hibernation Schedule tasks for the selected PSKE cluster with (3).
 
 ![6](/images/content/02-pske/10-clusterinteraction/cluster-hibernation/6.png)

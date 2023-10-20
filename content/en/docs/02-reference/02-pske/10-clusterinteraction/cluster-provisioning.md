@@ -1,39 +1,38 @@
 ---
-title: "PSKE - Cluster provisionierung"
-linkTitle: "Cluster provisionierung"
+title: "PSKE - Cluster provisioning"
+linkTitle: "Cluster provisioning"
 weight: 10
 date: 2023-02-21
 ---
-
-Im Menü "Clusters" (1) wählen Sie im Anschluss bei "Kubernetes Clusters" das Plus-Symbol (2). Die Eingabemaske für die Clustererstellung erscheint.
+In the menu "Clusters" (1), select the plus sign (2) for "Kubernetes Clusters". The cluster creation form appears.
 
 ![1](/images/content/02-pske/10-clusterinteraction/cluster-provisioning/1.png)
 
-Bei "Infrastructure" (1) ist unsere pluscloud open bereits für Sie ausgewählt. Im folgenden Schritt geben Sie Details zum Cluster an (2), wie etwa den Clusternamen, Kubernetes-Version und den Zweck (Purpose) des zu erstellenden Clusters. Sie haben die Möglichkeit, den vordefinierten Clusternamen (random) zu wählen, können aber auch einen eigenen, sprechenderen Namen wählen:
+In "Infrastructure" (1), our pluscloud open is already selected for you. In the next step, you provide details about the cluster, such as the cluster name, Kubernetes version, and purpose of the cluster to be created. You have the option to choose the predefined cluster name (random), but you can also choose your own, more descriptive name:
 
 ![2](/images/content/02-pske/10-clusterinteraction/cluster-provisioning/2.png)
 
-Optional "YAML" (3): Hier können die IP-Netze der Worker Nodes definiert werden, welche sich mit den IP-Netzen 10.20.0.0/16, 10.64.0.0/12, 10.80.0.0/12, 192.168.123.0/24 nicht überlappen dürfen. Diese Auswahl kann wichtig sein, insofern Sie später Ihr Kubernetes Cluster via HybridConnector mit einer Bestandsumgebung verbinden wollen.
+Optional "YAML" (3): Here you can define the IP networks of the worker nodes, which must not overlap with the IP networks 10.20.0.0/16, 10.64.0.0/12, 10.80.0.0/12, 192.168.123.0/24. This selection can be important if you later want to connect your Kubernetes cluster to an existing environment via the HybridConnector.
 
 ```yaml
 spec:
-  provider:
-    type: openstack
-    infrastructureConfig:
-      networks:
-        workers: 10.250.0.0/16
-  networking:
-    nodes: 10.250.0.0/16
+  provider:
+    type: openstack
+    infrastructureConfig:
+      networks:
+        workers: 10.250.0.0/16
+  networking:
+    nodes: 10.250.0.0/16
 ```
 
-Im Punkt "Worker" wählen Sie aus, wie Ihre Worker Nodes gesized werden sollen und wie viele Sie erstellen möchten. Die Master/Controlplane Nodes sind für Sie nicht konfigurierbar. Diese werden vom Gardener gemanagt.
+In the "Worker" section, you can select how your worker nodes should be sized and how many you want to create. The master/control plane nodes are not configurable for you. These are managed by Gardener.
 
-Das folgende Beispiel erstellt zwei Worker Nodes mit dem Flavor "SCS-4V:8:100" (4 vCPUs, 8 GB RAM, 100 GB lokaler Storage). Es werden "Ubuntu 20.04" als Betriebssystem und  "containerd" als Container Runtime verwendet.
+The following example creates two worker nodes with the flavor "SCS-4V:8:100" (4 vCPUs, 8 GB RAM, 100 GB local storage). Ubuntu 20.04 is used as the operating system and containerd as the container runtime.
 
 ![3](/images/content/02-pske/10-clusterinteraction/cluster-provisioning/3.png)
 
-Im Punkt "Maintenance" können Sie wählen, zu welchem Zeitpunkt Ihr Cluster auf Updates vom Worker-Betriebssystem und der Kubernetes-Version geprüft und ggf. geupdatet werden soll. Mit dem Punkt "Auto Update" können Sie kontrollieren, ob Updates automatisch eingespielt werden.
+In the "Maintenance" section, you can select when your cluster should be checked for updates to the worker operating system and Kubernetes version, and if necessary updated. You can use the "Auto Update" option to control whether updates are applied automatically.
 
-Der letzte Punkt "Hibernation" definiert, wann Ihr Cluster automatisch zu gewissen Zeiten heruntergefahren und die Worker-Node-Ressourcen entfernt werden. Das dient zur Kostenminimierung beim jeweiligen Cloud-Provider und ist besonders dienlich, wenn Sie ein Entwicklungscluster besitzen, das nicht permanent aktiv sein muss. Hier können Sie ein oder mehrere Zeitfenster bestimmen.
+The last section, "Hibernation", defines when your cluster will be automatically shut down and worker node resources removed at certain times. This is to minimize costs with the respective cloud provider and is especially useful if you have a development cluster that does not need to be permanently active. Here you can specify one or more time windows.
 
-Mit einem abschließenden Klick auf "Create" wird das Cluster erstellt.
+The cluster is created with a final click on "Create".
