@@ -1,6 +1,6 @@
 ---
-title: "CoreDNS - Change scaling behavior"
-linkTitle: "CoreDNS - Change scaling behavior"
+title: "PSKE - DNS (CoreDNS)"
+linkTitle: "DNS"
 weight: 20
 date: 2023-07-12
 ---

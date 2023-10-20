@@ -1,26 +1,29 @@
 ---
-title: "PSKE - Horizontal Node Autoscaling"
-linkTitle: "Horizontal Node Autoscaling"
+title: "PSKE - Cluster Autoscaling"
+linkTitle: "Cluster Autoscaling"
 weight: 10
 date: 2023-02-21
 ---
 
-Der Horizontal Node Autoscaler (HNA) ist ein Tool, welches automatisch die Anzahl an Worker Nodes eines Kubernetes Clusters anpasst, wenn folgende Bedingungen zutreffen:
+# Cluster Autoscaler (Horizontal Node Autoscaler - HNA)
 
-- Es gibt Pods, die aufgrund von mangelnden Ressourcen nicht gestartet werden können <br>
-- Es gibt Worker Nodes, die für einen bestimmten Zeitraum (Default: 30m) zu gering ausgelastet sind und die Pods auf anderen Worker Nodes verteilt werden können
+The Cluster Autoscaler, also known as the Horizontal Node Autoscaler (HNA), is a tool that automatically adjusts the number of worker nodes in a Kubernetes cluster under the following conditions:
 
-## Voraussetzung
+- There are pods that cannot start due to insufficient resources.
+- There are worker nodes that have been underutilized for a specific period (default: 30 minutes), and pods can be distributed to other worker nodes.
 
-Damit der Horizontal Node Autoscaler in ein Shoot Cluster installiert wird müssen die Angaben "Autoscaler Min." und "Autoscaler Max." in mindestens einer Worker Group definiert sein
+## Prerequisites
 
-- "Autoscaler Min." definiert die minimale Anzahl an Worker Nodes innerhalb der Worker Group <br>
-- "Autoscaler Max." definiert die maximale Anzahl an Worker Nodes, die der Horizontal Node Autoscaler bei Ressourcen-Engpässen innerhalb einer Worker Group bereitstellen wird
+To install the Horizontal Node Autoscaler in a Shoot Cluster, the "Autoscaler Min." and "Autoscaler Max." values must be defined in at least one worker group.
+
+- "Autoscaler Min." defines the minimum number of worker nodes within the worker group.
+- "Autoscaler Max." defines the maximum number of worker nodes that the Horizontal Node Autoscaler will provide in the event of resource shortages within a worker group.
 
 ![HNA](/images/content/02-pske/30-clusterconfiguration/hna.png)
 
 ## Simulation
-Aktuell existiert in dem Shoot Cluster eine Worker Node:
+
+Currently, the Shoot Cluster has one worker node:
 
 ```bash
 kubectl describe node shoot--ldtivqit95-worker-jh07p-z1-7d897-cgrw6
@@ -49,7 +52,7 @@ Allocated resources:
   hugepages-2Mi      0 (0%)        0 (0%)
 ```
 
-Es wird ein NGINX Deployment erstellt:
+An NGINX Deployment is created:
 
 ```yaml
 kubectl apply -f deployment.yaml
@@ -83,7 +86,7 @@ spec:
             # cpu: "500m"
 ```
 
-Die Ressourcen des bestehenden Worker Nodes reichen nicht aus und es wird der cluster-autoscaler (Horizontal Node Autoscaler) getriggert:
+The existing worker node's resources are insufficient, triggering the cluster-autoscaler (Horizontal Node Autoscaler):
 
 ```bash
 k describe pod nginx-54c7fd947f-b2k67
@@ -94,15 +97,16 @@ Events:
   Normal   TriggeredScaleUp  26s   cluster-autoscaler  pod triggered scale-up: [{shoot--ldtivqit95-worker-jh07p-z1 1->2 (max: 3)}]
 ```
 
-Nach Löschung des Deployments wurde der zusätzliche Worker Node nach 30m vom Cluster Autoscaler (Horizontal Node Autoscaler) wieder deprovisioniert.
+After the deletion of the deployment, the additional worker node is deprovisioned by the Cluster Autoscaler (Horizontal Node Autoscaler) after 30 minutes.
 
 ## Best Practices
-- Modifizeren Sie keine Nodes via Hand, die Teil einer Autoscaling Gruppe sind. Alle Nodes in der selben Node Group sollten die selben Kapazitätsangaben und Labels besitzen
-- Verwenden Sie Requests für die Container/Pods!
-- Verwenden Sie PodDisruptionBudgets um zu verhindern, dass Pods zu abrupt gelöscht werden (falls benötigt)
-- Überprüfen Sie, ob das Quota des Cloud Anbieters groß genug ist, bevor das min/max des Horizontal Node Autoscalers gesetzt wird
-- Verwenden Sie keine zusätzlichen Node Group Autoscaler (auch nicht von Ihrem Cloud Anbieter)
 
-## Fazit
-Der Horizontal Node Autoscaler funktioniert wie eingangs beschrieben. Wichtig ist, dass die Best Practices eingehalten werden, damit der Cluster Autoscaler wie vorgesehen funktioniert.
-Der HNA ist per Default in PSKE aktiviert und steht Ihnen zur Verfügung.
+- Do not manually modify nodes that are part of an autoscaling group. All nodes in the same node group should have the same capacity and labels.
+- Use requests for containers/pods.
+- Use PodDisruptionBudgets to prevent pods from being deleted too abruptly (if needed).
+- Ensure that your cloud provider's quota is sufficient before setting the min/max values for the Horizontal Node Autoscaler.
+- Avoid using additional Node Group Autoscalers (even from your cloud provider).
+
+## Conclusion
+
+The Horizontal Node Autoscaler functions as described above. It's essential to adhere to best practices for the Cluster Autoscaler to work as intended. The HNA is enabled by default in PSKE and is available for your use.
