@@ -2,8 +2,8 @@
 ---
 title: "PSKE"
 linkTitle: "PSKE"
-weight: 2
+weight: 1
 date: 2023-02-21
 description: >
-  Alles rund um PSKE
+  Everything about plusserver Kubernetes Engine (PSKE)
 ---
