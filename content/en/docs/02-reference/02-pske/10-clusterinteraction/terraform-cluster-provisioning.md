@@ -1,6 +1,6 @@
 ---
-title: "PSKE - Terraform Cluster Provisioning"
-linkTitle: "Terraform Cluster Provisioning"
+title: "PSKE - Cluster Provisioning (Terraform)"
+linkTitle: "Cluster Provisioning (Terraform)"
 weight: 10
 date: 2023-10-20
 ---

@@ -1,6 +1,6 @@
 ---
-title: "PSKE - DNS (CoreDNS)"
-linkTitle: "DNS"
+title: "PSKE - Cluster DNS (CoreDNS)"
+linkTitle: "Cluster DNS"
 weight: 20
 date: 2023-07-12
 ---
