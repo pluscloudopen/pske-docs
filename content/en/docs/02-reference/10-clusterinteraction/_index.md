@@ -10,7 +10,6 @@ description: >
 
 In general, there are 3 main ways to interact with a cluster in PSKE:
 
-| --- | --- |
-| PSKE Dashboard | |
-| YAML | |
-| Terraform | |
+- PSKE Dashboard
+- Gardenctl
+- Terraform
