@@ -8,7 +8,7 @@ date: 2023-10-10
 Based on the current interactions between cert manager and ingress-nginx
 
 {{% alert title="Warning" color="warning" %}}
-Ingress NGINX and NGINX Ingress are not the same deployments. Although both use NGINX as their respective reverse proxy one of them is made by Kubernetes and one is made by NGINX
+Ingress NGINX and NGINX Ingress are not the same deployments. Although both use NGINX as their respective reverse proxy, one of them is made by Kubernetes and one is made by NGINX
 {{% /alert %}}
 
 ## Clean install Ingress NGINX with helm
