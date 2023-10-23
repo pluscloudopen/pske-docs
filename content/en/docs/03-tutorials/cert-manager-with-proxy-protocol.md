@@ -57,10 +57,10 @@ ingress-nginx-controller-admission   ClusterIP      10.60.24.8       <none>     
 ```yaml
 controller:
   service:
-    loadBalancerIP: "10.60.24.9"
+    loadBalancerIP: "192.168.10.1"
 # [...]
     annotations:
-      loadbalancer.openstack.org/hostname: "10.60.24.9.nip.io"
-      loadbalancer.openstack.org/load-balancer-address: "10.60.24.9"
+      loadbalancer.openstack.org/hostname: "192.168.10.1.nip.io"
+      loadbalancer.openstack.org/load-balancer-address: "192.168.10.1"
 ```
 
