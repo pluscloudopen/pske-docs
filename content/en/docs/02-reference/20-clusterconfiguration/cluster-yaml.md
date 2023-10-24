@@ -1,11 +1,11 @@
 ---
 title: "PSKE - Shoot Spec"
 linkTitle: "Shoot Spec"
-weight: 20
+weight: 10
 date: 2023-10-24
 ---
 
-{{% alert title="Warnung" color="warning" %}}
+{{% alert title="Warning" color="warning" %}}
 Misconfigurations in the ShootSpec can cause errors or even make the cluster inoperable.
 {{% /alert %}}
 
