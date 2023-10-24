@@ -10,7 +10,7 @@ With the default configuration of the Ingress Controller and OpenStack load bala
 
 If the external IP is required within the Kubernetes cluster, the so-called proxy protocol must be activated.
 
-{{% alert title="Warnung" color="warning" %}}
+{{% alert title="Warning" color="warning" %}}
 If the proxy protocol is activated, the Ingress can no longer be accessed from within the cluster!
 {{% /alert %}}
 
