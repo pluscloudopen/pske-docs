@@ -1,5 +1,5 @@
 ---
-title: "Persisten Volume Encryption"
+title: "Persistent Volume Encryption"
 linkTitle: "Persistent Volume Encryption"
 weight: 20
 date: 2023-10-22

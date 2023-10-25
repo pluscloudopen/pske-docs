@@ -1,6 +1,6 @@
 ---
-title: "Hubble UI"
-linkTitle: "Hubble UI"
+title: "Hubble UI (Cilium)"
+linkTitle: "Hubble UI (Cilium)"
 weight: 20
 date: 2023-02-21
 ---

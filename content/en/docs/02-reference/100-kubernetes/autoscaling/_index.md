@@ -1,34 +1,34 @@
 ---
-title: "Kubernetes - Autoscaling"
-linkTitle: "Kubernetes - Autoscaling"
+title: "Autoscaling"
+linkTitle: "Autoscaling"
 weight: 20
 date: 2023-02-21
 description: >
   
 ---
 
-## Formen von Kubernetes Autoscaling
+## Forms of Kubernetes Autoscaling
 
-Autoscaling ist eine Methode zur automatischen Skalierung von K8s-Workloads nach oben oder unten auf Basis/Erwartung der Ressourcennutzung. Autoscaling in Kubernetes hat drei Dimensionen:
+Autoscaling is a method for automatically scaling Kubernetes (K8s) workloads up or down based on resource usage/expectations. Autoscaling in Kubernetes has three dimensions:
 
 {{< alert >}}
-***Horizontal Pod Autoscaler (HPA)***: Passt die Anzahl der Replikate eines Pods an.
+***Horizontal Pod Autoscaler (HPA)***: Adjusts the number of replicas of a pod.
 
-***Cluster-Autoscaler***: Passt die Anzahl der Nodes eines Clusters an.
+***Cluster Autoscaler***: Adjusts the number of nodes in a cluster.
 
-***Vertical Pod Autoscaler (VPA)***: Passt die Ressourcenanforderungen und -grenzen eines Containers an.
+***Vertical Pod Autoscaler (VPA)***: Adjusts the resource requests and limits of a container.
 {{< /alert >}}
 
-Die verschiedenen Autoscaler arbeiten auf einer von zwei Kubernetes-Ebenen
+The different autoscalers operate at one of two Kubernetes levels
 
-**Pod-Ebene**: Die HPA- und VPA-Methoden finden auf der Pod-Ebene statt. Sowohl HPA als auch VPA skalieren die verfügbaren Ressourcen oder Instanzen des Pods, sowohl auf, als auch ab.
+**Pod Level**: The HPA and VPA methods occur at the pod level. Both HPA and VPA scale the available resources or instances of the pod, both up and down.
 
-**Clusterebene**: Der Cluster-Autoscaler fällt unter die Clusterebene und skaliert die Anzahl der Nodes innerhalb Ihres Clusters nach oben oder unten.
+**Cluster Level**: The Cluster Autoscaler operates at the cluster level and scales the number of nodes within your cluster up or down.
 
 {{< alert color="warning" title="Warning">}}
-Gleichzeitige Verwendung von VPA und HPA
-Der HPA und VPA können miteinander in Konflikt geraten - wenn man beispielsweise bei beiden den RAM als Basismetrik der Skalierung verwendet. Dadurch kann es passieren, dass beide versuchen, Workloads gleichzeitig vertikal und horizontal zu skalieren, was unvorhersehbare Folgen haben kann. Um solche Konflikte zu vermeiden, ist es Best Practice, dass HPA und VPA auf unterschiedliche Metriken Metriken achten.
+Simultaneous Use of VPA and HPA
+HPA and VPA can conflict with each other, for instance, when using RAM as the base metric for scaling in both cases. This can lead to both attempting to scale workloads vertically and horizontally simultaneously, resulting in unpredictable consequences. To avoid such conflicts, it is best practice for HPA and VPA to focus on different metrics.
 
 
-In der Regel wird der VPA so eingestellt, dass die Skalierung auf der Basis von CPU oder RAM erfolgt, und benutzerdefinierte Metriken für HPA verwendet werden.
+Typically, VPA is configured to scale based on CPU or RAM, and custom metrics are used for HPA.
 {{< /alert >}}

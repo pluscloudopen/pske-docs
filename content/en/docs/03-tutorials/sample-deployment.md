@@ -1,6 +1,6 @@
 ---
-title: "Sample deployment"
-linkTitle: "Sample deployment"
+title: "Simple deployment example"
+linkTitle: "Simple deployment example"
 weight: 20
 date: 2023-10-21
 ---

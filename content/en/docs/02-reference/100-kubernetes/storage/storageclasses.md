@@ -1,6 +1,6 @@
 ---
 title: "StorageClasses"
-linkTitle: "StorgaeClasses"
+linkTitle: "StorageClasses"
 weight: 20
 date: 2023-10-22
 ---
