@@ -14,7 +14,7 @@ If the external IP is required within the Kubernetes cluster, the so-called prox
 If the proxy protocol is activated, the Ingress can no longer be accessed from within the cluster!
 {{% /alert %}}
 
-### Beispiel NGINX Ingress Controller
+### Example NGINX Ingress Controller
 The following lines must be added to the ConfigMap of the Ingress Controller:
 
 ```yaml
