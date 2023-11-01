@@ -1,6 +1,6 @@
 ---
-title: "Setting up a Horizontal Pod Autoscaler (HPA)"
-linkTitle: "Setting up a Horizontal Pod Autoscaler (HPA)"
+title: "Setting up a Vertical Pod Autoscaler (VPA)"
+linkTitle: "Setting up a Vertical Pod Autoscaler (VPA)"
 weight: 20
 date: 2023-02-21
 ---
