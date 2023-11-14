@@ -1,7 +1,7 @@
 ---
 title: "PSKE - Clusterconfiguration"
 linkTitle: "Clusterconfiguration"
-weight: 50
+weight: 10
 date: 2023-02-21
 description: >
 
