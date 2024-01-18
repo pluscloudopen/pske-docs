@@ -6,6 +6,7 @@ date: 2024-01-18
 ---
 
 # General
+By default you can only download kubeconfigs with a maximum lifetime of 24h from the gardener Dashboard. With this guide you'll be able to create your own permanent kubeconfig for your cluster.
 
 ## Step 1: Create a service account
 The service account name will be the user name in Kubeconfig. Here we are creating the service account in the kube-system as I am creating a clusterRole. If you want to create a config to give namespace level limited access, create the service account in the required namespace.
