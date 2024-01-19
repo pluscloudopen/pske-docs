@@ -11,7 +11,7 @@ By default you can only download kubeconfigs with a maximum lifetime of 24h from
 ## Step 1: Create a service account
 The service account name will be the user name in Kubeconfig. Here we are creating the service account in the kube-system as I am creating a clusterRole. If you want to create a config to give namespace level limited access, create the service account in the required namespace.
 
-`kubectl -n kube-system create serviceaccount devops-cluster-admin`
+`kubectl -n kube-system create serviceaccount perm-cluster-admin`
 
 ## Step 2: Create a secret for the service account
 From Kubernetes Version 1.24, the secret for the service account has to be created separately with an annotation kubernetes.io/service-account.name and type kubernetes.io/service-account-token
